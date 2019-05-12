@@ -3,7 +3,7 @@ const ytdl = require('ytdl-core');
 const express = require('express');
   const app = express();
 
-  app.listen(4000, () => {
+  app.listen(5000, () => {
     console.log('Server Works !!! At port 4000');
 });
 
@@ -14,3 +14,8 @@ const express = require('express');
         format: 'mp4'
         }).pipe(res);
     });
+
+    app.get('/', (req,res) => {
+      var URL = req.query.URL;
+     res.send("hello World");
+      });
