@@ -1,9 +1,10 @@
 const fs = require('fs');
 const ytdl = require('ytdl-core');
 const express = require('express');
-  const app = express();
+const app = express();
+const port=process.env.PORT || 3000;
 
-  app.listen(5000, () => {
+  app.listen(port, () => {
     console.log('Server Works !!! At port 4000');
 });
 
