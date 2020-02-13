@@ -22,3 +22,39 @@ npm start
 - **GET /download**  
 Query:  
 id - Video id of the youtube video
+
+**Sample Response:**
+```json
+{
+    "expiresInSeconds": "Integer",
+    "formats": [],
+    "adaptiveFormats": []
+}
+```
+
+- **GET /candownload**  
+Query:  
+id - Video id of the youtube video
+
+**Sample Response:** OK | UNAVAILABLE
+
+- **GET /details**  
+Query:  
+id - Video id of the youtube video
+
+**Sample Response:**
+```json
+{
+    "videoId": "String",
+    "title": "String",
+    "lengthSeconds": "Integer",
+    "keywords": [],
+    "channelId": "String",
+    "shortDescription": "String",
+    "thumbnail": {
+        "thumbnails": [],
+        "averageRating": "double",
+        "author": "String"
+    }
+}
+```
