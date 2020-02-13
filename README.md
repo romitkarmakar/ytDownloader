@@ -19,7 +19,7 @@ npm start
 ```
 ## API Documentation
 
-- **GET /download**  
+- ### **GET /download**  
 Query:  
 id - Video id of the youtube video
 
@@ -32,13 +32,13 @@ id - Video id of the youtube video
 }
 ```
 
-- **GET /candownload**  
+- ### **GET /candownload**  
 Query:  
 id - Video id of the youtube video
 
 **Sample Response:** OK | UNAVAILABLE
 
-- **GET /details**  
+- ### **GET /details**  
 Query:  
 id - Video id of the youtube video
 

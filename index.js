@@ -22,6 +22,13 @@ http
 
             response.on("end", function() {
               var mainjson = qs.parse(body);
+
+              if (mainjson.errorcode) {
+                res.writeHead(200, { "Content-Type": "text/plain" });
+                res.write("ERROR");
+                return res.end();
+              }
+
               var playerResponse = JSON.parse(mainjson.player_response);
 
               if (playerResponse.playabilityStatus.status == "OK") {
@@ -51,6 +58,13 @@ http
 
             response.on("end", function() {
               var mainjson = qs.parse(body);
+
+              if (mainjson.errorcode) {
+                res.writeHead(200, { "Content-Type": "text/plain" });
+                res.write("ERROR");
+                return res.end();
+              }
+
               var playerResponse = JSON.parse(mainjson.player_response);
               if (playerResponse.playabilityStatus.status == "OK") {
                 res.writeHead(200, { "Content-Type": "text/plain" });
@@ -79,11 +93,45 @@ http
 
             response.on("end", function() {
               var mainjson = qs.parse(body);
+
+              if (mainjson.errorcode) {
+                res.writeHead(200, { "Content-Type": "text/plain" });
+                res.write("ERROR");
+                return res.end();
+              }
+              
               var playerResponse = JSON.parse(mainjson.player_response);
 
               res.writeHead(200, { "Content-Type": "application/json" });
               res.write(JSON.stringify(playerResponse.videoDetails));
               return res.end();
+            });
+          }
+        )
+        .on("error", e => {
+          console.log(e);
+        });
+    } else if (route == "/raw") {
+      https
+        .get(
+          `https://www.youtube.com/get_video_info?video_id=${q.query.id}`,
+          response => {
+            var body = "";
+            response.on("data", d => {
+              body = body + d;
+            });
+
+            response.on("end", function() {
+              var mainjson = qs.parse(body);
+              if (mainjson.errorcode) {
+                res.writeHead(200, { "Content-Type": "text/plain" });
+                res.write("ERROR");
+                return res.end();
+              } else {
+                res.writeHead(200, { "Content-Type": "application/json" });
+                res.write(JSON.stringify(mainjson));
+                return res.end();
+              }
             });
           }
         )
